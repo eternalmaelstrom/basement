@@ -1,4 +1,4 @@
-variable "SUBSCRIPTION_ID" {
+variable "subscription_id" {
   description = "Azure subscription id"
   type        = string
   default     = ""
