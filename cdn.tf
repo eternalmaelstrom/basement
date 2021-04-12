@@ -33,7 +33,7 @@ resource "azurerm_cdn_endpoint" "rocalc" {
   }
 
   delivery_rule {
-    name  = "forwardtoapp"
+    name  = "SpaRedirect"
     order = 2
     url_file_extension_condition {
       operator     = "LessThan"
@@ -41,8 +41,23 @@ resource "azurerm_cdn_endpoint" "rocalc" {
     }
 
     url_rewrite_action {
-      source_pattern = "/"
-      destination    = "/rocalc/index.html"
+      source_pattern          = "/"
+      destination             = "/rocalc/index.html"
+      preserve_unmatched_path = false
+    }
+  }
+
+  delivery_rule {
+    name  = "AssetRedirect"
+    order = 3
+    url_file_extension_condition {
+      operator     = "GreaterThanOrEqual"
+      match_values = ["1"]
+    }
+
+    url_rewrite_action {
+      source_pattern          = "/"
+      destination             = "/rocalc/"
     }
   }
 
