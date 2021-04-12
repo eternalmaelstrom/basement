@@ -7,7 +7,7 @@ resource "azurerm_cdn_profile" "rocalc" {
 }
 
 resource "azurerm_cdn_endpoint" "rocalc" {
-  name                = "cdnrocalc${local.namespace}${local.environment}"
+  name                = "cdn-rocalc-${local.namespace}-${local.environment}"
   profile_name        = azurerm_cdn_profile.rocalc.name
   location            = azurerm_resource_group.rocalc.location
   resource_group_name = azurerm_resource_group.rocalc.name
@@ -35,11 +35,6 @@ resource "azurerm_cdn_endpoint" "rocalc" {
   delivery_rule {
     name  = "forwardtoapp"
     order = 2
-
-    url_path_condition {
-      operator = "Any"
-    }
-
     url_file_extension_condition {
       operator     = "LessThan"
       match_values = ["1"]

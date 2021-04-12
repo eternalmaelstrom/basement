@@ -17,5 +17,5 @@ resource "azurerm_storage_account" "rocalc" {
 resource "azurerm_storage_container" "rocalc" {
   name                  = "rocalc"
   storage_account_name  = azurerm_storage_account.rocalc.name
-  container_access_type = "blob"
+  container_access_type = "container"
 }
