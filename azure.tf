@@ -7,7 +7,7 @@ terraform {
   }
   backend "azurerm" {
     resource_group_name  = "em-tf-prod"
-    storage_account_name = "saemstateprod"
+    storage_account_name = "saemtfstateprod"
     container_name       = "tfstate"
     key                  = "terraform.tfstate"
   }
@@ -16,5 +16,5 @@ terraform {
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
-  subscription_id = "10ba4793-b376-4b41-bd82-b8c7ee761363"
+  subscription_id = var.SUBSCRIPTION_ID
 }

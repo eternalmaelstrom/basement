@@ -16,7 +16,3 @@ resource "azurerm_storage_account" "rocalc" {
     environment = "${local.environment}"
   }
 }
-
-output "test" {
-  value = azurerm_storage_account.rocalc.primary_web_host
-}
