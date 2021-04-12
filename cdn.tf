@@ -12,10 +12,10 @@ resource "azurerm_cdn_endpoint" "rocalc" {
   location            = azurerm_resource_group.rocalc.location
   resource_group_name = azurerm_resource_group.rocalc.name
 
-  origin_host_header = azurerm_storage_account.rocalc.primary_web_host
+  origin_host_header = azurerm_storage_account.rocalc.primary_blob_host
   origin {
     name      = "rocalcweb"
-    host_name = azurerm_storage_account.rocalc.primary_web_host
+    host_name = azurerm_storage_account.rocalc.primary_blob_host
   }
 
   delivery_rule {
@@ -33,7 +33,7 @@ resource "azurerm_cdn_endpoint" "rocalc" {
   }
 
   delivery_rule {
-    name  = "forwardtoindex"
+    name  = "forwardtoapp"
     order = 2
 
     url_path_condition {
@@ -47,7 +47,7 @@ resource "azurerm_cdn_endpoint" "rocalc" {
 
     url_rewrite_action {
       source_pattern = "/"
-      destination    = "/index.html"
+      destination    = "/rocalc/index.html"
     }
   }
 

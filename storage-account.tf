@@ -8,12 +8,14 @@ resource "azurerm_storage_account" "rocalc" {
   account_kind             = "StorageV2"
 
   allow_blob_public_access = true
-  static_website {
-    index_document     = "index.html"
-    error_404_document = "index.html"
-  }
-
   tags = {
     environment = "${local.environment}"
   }
+}
+
+
+resource "azurerm_storage_container" "rocalc" {
+  name                  = "rocalc"
+  storage_account_name  = azurerm_storage_account.rocalc.name
+  container_access_type = "blob"
 }
