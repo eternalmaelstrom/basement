@@ -41,8 +41,8 @@ resource "azurerm_cdn_endpoint" "rocalc" {
     }
 
     url_file_extension_condition {
-      operator         = "Any"
-      negate_condition = true
+      operator         = "LessThan"
+      match_values     = ["1"]
     }
 
     url_rewrite_action {
