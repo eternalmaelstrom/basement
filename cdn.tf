@@ -7,7 +7,7 @@ resource "azurerm_cdn_profile" "rocalc" {
 }
 
 resource "azurerm_cdn_endpoint" "rocalc" {
-  name                = "cdn${local.namespace}rocalc${local.environment}"
+  name                = "cdnrocalc${local.namespace}${local.environment}"
   profile_name        = azurerm_cdn_profile.rocalc.name
   location            = azurerm_resource_group.rocalc.location
   resource_group_name = azurerm_resource_group.rocalc.name
